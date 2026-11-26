@@ -64,6 +64,32 @@ let isDarkMode = true;
 let isOpenToWork = true;
 
 /* ---------------------------------------------------------------------
+   NORMALISASI DATA SUPABASE -> FORMAT UI
+   --------------------------------------------------------------------- */
+function normalizeProjects(list) {
+  return (list || []).map((p) => {
+    const coverImg = p.cover || p.cover_url || '';
+    const rawDocs = Array.isArray(p.docs) ? p.docs : [];
+    const normalizedDocs = rawDocs.length
+      ? rawDocs.map((d, i) => ({
+          img: d.img || d.url || coverImg,
+          caption: d.caption || d.label || `Dokumentasi 0${i + 1}`
+        }))
+      : [{ img: coverImg, caption: p.title || 'Dokumentasi Proyek' }];
+
+    return {
+      ...p,
+      file: p.file || p.file_slug || 'project.app',
+      cover: coverImg,
+      tag: p.tag || p.tags || '',
+      desc: p.desc || p.short_desc || '',
+      features: Array.isArray(p.features) ? p.features : [],
+      docs: normalizedDocs
+    };
+  });
+}
+
+/* ---------------------------------------------------------------------
    TEMA & STATUS KETERSEDIAAN
    --------------------------------------------------------------------- */
 function applyThemeClass() {
@@ -247,15 +273,20 @@ function closeTimelineDetail() {
 function openProjectModal(index) {
   const proj = projectsData[index];
   if (!proj) return;
-  document.getElementById('proj-modal-file').textContent = proj.file;
-  document.getElementById('proj-modal-role').textContent = proj.role;
-  document.getElementById('proj-modal-year').textContent = proj.year;
-  document.getElementById('proj-modal-title').textContent = proj.title;
-  document.getElementById('proj-modal-overview').textContent = proj.overview;
+  document.getElementById('proj-modal-file').textContent = proj.file || 'project.app';
+  document.getElementById('proj-modal-role').textContent = proj.role || '';
+  document.getElementById('proj-modal-year').textContent = proj.year || '';
+  document.getElementById('proj-modal-title').textContent = proj.title || '';
+  document.getElementById('proj-modal-overview').textContent = proj.overview || '';
   document.getElementById('proj-modal-features').innerHTML = (proj.features || []).map(f => `<li>${f}</li>`).join('');
-  document.getElementById('proj-modal-tags').innerHTML = proj.tag.split('•').map(t => `<span class="font-mono-code text-[10px] px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">${t.trim()}</span>`).join('');
+  document.getElementById('proj-modal-tags').innerHTML = (proj.tag || '')
+    .split(/[•,]/)
+    .map(t => t.trim())
+    .filter(Boolean)
+    .map(t => `<span class="font-mono-code text-[10px] px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">${t}</span>`)
+    .join('');
 
-  const docs = proj.docs || [{ img: proj.cover, caption: proj.title }];
+  const docs = (proj.docs && proj.docs.length) ? proj.docs : [{ img: proj.cover, caption: proj.title }];
   const mainImg = document.getElementById('proj-modal-main-img');
   const captionEl = document.getElementById('proj-modal-img-caption');
   if (mainImg) mainImg.src = docs[0].img;
@@ -437,7 +468,7 @@ async function bootstrap() {
   ]);
 
   certificatesData = certs;
-  projectsData = projs;
+  projectsData = normalizeProjects(projs);
   if (remoteStatus !== null) {
     isOpenToWork = remoteStatus;
     applyAvailabilityUI();

@@ -3,6 +3,10 @@
     {
       "source": "/assets/sertifikasi/:filename*",
       "destination": "https://pjfubuivwefvzavtkhik.supabase.co/storage/v1/object/public/portfolio-assets/:filename*"
+    },
+    {
+      "source": "/assets/cv/:filename*",
+      "destination": "https://pjfubuivwefvzavtkhik.supabase.co/storage/v1/object/public/portfolio-assets/:filename*"
     }
   ]
 }
