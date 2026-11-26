@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Fachrul Reihan Fauzian (Ziyyan) —  Web Engineer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PDF.js CDN untuk Preview Sertifikat PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="/src/css/style.css">
+</head>
+<body class="antialiased selection:bg-amber-500/30 selection:text-amber-200">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 theme-nav">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div id="secret-dots-trigger" onclick="handleSecretDotsClick()" title="ZiyyanOS Workstation" class="flex items-center gap-1.5 cursor-pointer py-1 px-1.5 rounded hover:bg-slate-500/10 transition">
+                    <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                </div>
+                <a href="#about" class="text-sm sm:text-base font-extrabold tracking-tight theme-text-main flex items-center gap-1.5">
+                    <span>Ziyyan<span class="text-amber-500">.</span>dev</span>
+                </a>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-6 text-xs sm:text-sm font-medium theme-text-muted">
+                <a href="#about" class="hover:text-amber-500 transition">Tentang</a>
+                <a href="#experience" class="hover:text-amber-500 transition">Pendidikan &amp; Pengalaman</a>
+                <a href="#gallery" class="hover:text-amber-500 transition">Sertifikat</a>
+                <a href="#projects" class="hover:text-amber-500 transition">Proyek</a>
+                <a href="#skills" class="hover:text-amber-500 transition">Keahlian</a>
+                <a href="#contact" class="hover:text-amber-500 transition">Kontak</a>
+            </nav>
+
+            <div class="flex items-center gap-2.5">
+                <button
+                    id="nav-terminal-btn"
+                    onclick="openCheatConsole()"
+                    class="flex font-mono-code text-xs px-3 py-1.5 rounded-lg bg-slate-900 text-emerald-400 border border-slate-700 hover:border-emerald-500/60 hover:bg-slate-800 transition items-center gap-2 cursor-pointer shadow-xs"
+                    title="Buka ZiyyanOS Terminal CLI (Laptop/Desktop)"
+                >
+                    <span class="text-emerald-500 font-bold">&gt;_</span>
+                    <span>Terminal</span>
+                </button>
+
+                <button
+                    id="theme-toggle-btn"
+                    onclick="toggleTheme(this)"
+                    class="w-9 h-9 rounded-lg border border-slate-700/40 flex items-center justify-center theme-text-muted hover:text-amber-500 hover:border-amber-500/50 transition cursor-pointer"
+                    aria-label="Ubah Tema Terang atau Gelap"
+                    title="Ubah Tema (Dark / Light)"
+                >
+                    <i id="theme-icon" class="fa-solid fa-sun text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-20">
+
+        <!-- 1. HERO & PROFILE.CONFIG.JSON -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-4">
+                <button
+                    id="availability-badge"
+                    type="button"
+                    onclick="toggleAvailabilityStatus()"
+                    title="Klik untuk mengubah status ketersediaan kerja"
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:opacity-90 transition cursor-pointer"
+                >
+                    <span id="availability-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="availability-text">Open to Work</span>
+                </button>
+
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight theme-text-main leading-tight">
+                    Halo, saya <span id="hero-typed-name" class="text-amber-500">Muhammad Fachrul Reihan Fauzian</span><span class="typing-cursor" aria-hidden="true"></span>
+                </h1>
+
+                <p class="text-sm sm:text-base theme-text-muted leading-relaxed max-w-2xl">
+                    <strong class="theme-text-main font-semibold">Muhammad Fachrul Reihan Fauzian</strong> (Ziyyan) — Lulusan S1 Teknik Informatika Universitas Kuningan dengan minat pada infrastruktur teknologi, <em>cloud computing</em>, <em>deployment</em> aplikasi, integrasi sistem, dan pengujian perangkat lunak. Berpengalaman sebagai <strong>Google Cloud Arcade Facilitator</strong>, <strong>Front End Developer Intern</strong>, serta pengembang game skripsi berbasis <strong>Unity</strong>.
+                </p>
+
+                <div class="pt-1 flex flex-wrap items-center gap-3">
+                    <a
+                        id="view-cv-btn"
+                        href="https://pjfubuivwefvzavtkhik.supabase.co/storage/v1/object/public/portfolio-assets/Muhammad%20Fachrul%20Reihan%20Fauzian.jpg"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-amber-500/20 transition cursor-pointer"
+                    >
+                        <i class="fa-solid fa-file-pdf text-sm"></i>
+                        <span>Lihat CV Saya</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[11px] opacity-80"></i>
+                    </a>
+
+                    <a
+                        href="#contact"
+                        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-700/40 hover:border-amber-500/60 theme-text-main hover:text-amber-500 font-semibold text-xs sm:text-sm transition"
+                    >
+                        <i class="fa-solid fa-paper-plane text-xs text-amber-500"></i>
+                        <span>Hubungi Saya</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kartu Profil Bergaya Editor -->
+            <div class="lg:col-span-5">
+                <div class="theme-card rounded-2xl overflow-hidden shadow-lg">
+                    <div class="px-4 py-2.5 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                            <span class="ml-1.5 font-mono-code text-[11px] theme-text-muted">profile.config.json</span>
+                        </div>
+                        <span class="font-mono-code text-[10px] text-emerald-500">GPA 3.69</span>
+                    </div>
+
+                    <div class="p-5 flex flex-col sm:flex-row lg:flex-col items-center gap-5">
+                        <div class="relative group w-44 h-44 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border-2 border-amber-500/60 shrink-0 shadow-xl">
+                            <img
+                              id="profile-photo-img"
+                              src="/images/pp-ziyyan.jpg"
+                              onerror="if(!this.dataset.triedPng){this.dataset.triedPng='1';this.src='/images/pp-ziyyan.png';}else{this.src='https://placehold.co/400x400/1e293b/fbbf24?text=ZF';}"
+                              alt="Foto Profil Muhammad Fachrul Reihan Fauzian (Ziyyan)"
+                              class="w-full h-full object-cover object-[50%_18%] scale-[1.35] group-hover:scale-[1.45] transition duration-300"
+                            >
+                        </div>
+
+                        <div class="w-full json-box-adaptive font-mono-code text-xs space-y-1.5 overflow-x-auto p-3.5 rounded-xl">
+                            <div><span class="json-brace text-slate-500">{</span></div>
+                            <div class="pl-3"><span class="json-key text-sky-400">"fullName"</span>: <span class="json-str-amber text-amber-400">"Muhammad Fachrul Reihan Fauzian"</span>,</div>
+                            <div class="pl-3"><span class="json-key text-sky-400">"callsign"</span>: <span class="json-str-amber text-amber-400">"Ziyyan"</span>,</div>
+                            <div class="pl-3"><span class="json-key text-sky-400">"degree"</span>: <span class="json-str-emerald text-emerald-400">"S1 Teknik Informatika (3.69)"</span>,</div>
+                            <div class="pl-3"><span class="json-key text-sky-400">"focus"</span>: <span class="json-str-emerald text-emerald-400">"Cloud, Web &amp; Unity Game Dev"</span></div>
+                            <div><span class="json-brace text-slate-500">}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PENDIDIKAN & PENGALAMAN -->
+        <section id="experience" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <div class="flex items-center gap-2 text-xs font-mono-code text-amber-500 mb-1">
+                        <i class="fa-solid fa-timeline"></i>
+                        <span>ACADEMIC &amp; CAREER TIMELINE</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight theme-text-main">Pendidikan &amp; Pengalaman</h2>
+                </div>
+                <span class="text-xs theme-text-muted flex items-center gap-1.5">
+                    <i class="fa-solid fa-hand-pointer text-amber-500"></i>
+                    <span>Klik kartu untuk melihat rincian lengkap</span>
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <!-- Riwayat Pendidikan -->
+                <div class="lg:col-span-5 theme-card rounded-2xl overflow-hidden shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="px-4 py-2.5 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                <span class="ml-1.5 font-mono-code text-[11px] theme-text-muted">education.history</span>
+                            </div>
+                            <span class="font-mono-code text-[10px] text-violet-400">2019 → 2026</span>
+                        </div>
+
+                        <div class="p-5 sm:p-6">
+                            <div class="relative pl-7 space-y-6 before:content-[''] before:absolute before:left-3 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-amber-500/70 before:to-violet-500/80">
+                                <div onclick="openTimelineDetail('edu-smk')" role="button" tabindex="0" class="group relative p-4 rounded-2xl border border-amber-500/25 bg-gradient-to-br from-amber-500/[0.06] via-transparent to-transparent hover:border-amber-400/70 hover:-translate-y-0.5 hover:shadow-lg transition cursor-pointer">
+                                    <span class="absolute -left-[23px] top-5 w-3.5 h-3.5 rounded-full bg-amber-400 ring-4 ring-amber-500/20"></span>
+                                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                                        <span class="font-mono-code text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 font-semibold">Juli 2019 – Juni 2022</span>
+                                        <span class="text-[10px] font-mono-code uppercase tracking-wider text-amber-400 flex items-center gap-1">
+                                            <span>Detail</span>
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+                                        </span>
+                                    </div>
+                                    <h3 class="text-sm sm:text-base font-extrabold theme-text-main group-hover:text-amber-400 transition">Teknik Komputer dan Jaringan (TKJ)</h3>
+                                    <div class="text-xs font-semibold text-amber-500 flex items-center gap-1.5 mt-0.5">
+                                        <i class="fa-solid fa-network-wired text-[11px]"></i>
+                                        <span>SMK Budi Mulia Karawang</span>
+                                    </div>
+                                    <p class="text-xs theme-text-muted leading-relaxed mt-2">
+                                        Fokus pada arsitektur sistem komputer, administrasi jaringan, serta Praktik Kerja Lapangan (PKL) pemeliharaan hardware dan troubleshooting teknis.
+                                    </p>
+                                </div>
+
+                                <div onclick="openTimelineDetail('edu-uniku')" role="button" tabindex="0" class="group relative p-4 rounded-2xl border border-violet-500/30 bg-gradient-to-br from-violet-500/[0.08] via-transparent to-transparent hover:border-violet-400/75 hover:-translate-y-0.5 hover:shadow-lg transition cursor-pointer">
+                                    <span class="absolute -left-[23px] top-5 w-3.5 h-3.5 rounded-full bg-violet-400 ring-4 ring-violet-500/25"></span>
+                                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                                        <span class="font-mono-code text-[11px] px-2.5 py-0.5 rounded-full bg-violet-500/15 text-violet-300 font-semibold">Sept 2022 – Juni 2026</span>
+                                        <span class="font-mono-code text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">IPK 3,69 / 4,00</span>
+                                    </div>
+                                    <h3 class="text-sm sm:text-base font-extrabold theme-text-main group-hover:text-violet-400 transition">S1 Teknik Informatika</h3>
+                                    <div class="text-xs font-semibold text-violet-400 flex items-center justify-between gap-1.5 mt-0.5">
+                                        <span class="flex items-center gap-1.5">
+                                            <i class="fa-solid fa-graduation-cap text-[11px]"></i>
+                                            <span>Universitas Kuningan</span>
+                                        </span>
+                                        <span class="text-[10px] font-mono-code uppercase tracking-wider text-violet-300 flex items-center gap-1">
+                                            <span>Detail</span>
+                                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition"></i>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs theme-text-muted leading-relaxed mt-2">
+                                        Mempelajari rekayasa perangkat lunak, basis data, jaringan komputer, cloud computing, aktif sebagai <strong>Asisten Laboratorium</strong>, serta menyelesaikan <strong>skripsi game berbasis Unity</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-5 py-3.5 bg-slate-500/5 border-t border-slate-700/20 text-xs theme-text-muted flex flex-wrap items-center justify-between gap-2">
+                        <span class="font-medium">Eksplorasi Lanjutan:</span>
+                        <span class="font-mono-code text-[11px] text-emerald-400 font-semibold">Kubernetes • Linux • Observability</span>
+                    </div>
+                </div>
+
+                <!-- Pengalaman Kerja & Fasilitator -->
+                <div class="lg:col-span-7 theme-card rounded-2xl overflow-hidden shadow-lg">
+                    <div class="px-4 py-2.5 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                            <span class="ml-1.5 font-mono-code text-[11px] theme-text-muted">experience.log</span>
+                        </div>
+                        <span class="font-mono-code text-[10px] text-amber-400">4 ROLES</span>
+                    </div>
+
+                    <div class="p-5 sm:p-6 space-y-5">
+                        <div onclick="openTimelineDetail('exp-gcp')" role="button" tabindex="0" class="group relative p-4 sm:p-5 rounded-2xl border border-amber-500/25 bg-gradient-to-br from-amber-500/[0.07] via-transparent to-transparent hover:border-amber-400/70 hover:-translate-y-0.5 hover:shadow-lg transition cursor-pointer">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-brands fa-google text-base"></i>
+                                </div>
+                                <div class="flex-1 space-y-2">
+                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                        <div>
+                                            <h3 class="text-sm sm:text-base font-extrabold theme-text-main group-hover:text-amber-400 transition">Google Cloud Arcade Facilitator</h3>
+                                            <div class="text-xs font-semibold text-amber-500">Google Cloud &amp; Dicoding Indonesia</div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-mono-code text-[11px] px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold">Jul – Sep 2025 &amp; 2026</span>
+                                            <span class="text-amber-400 text-xs" title="Lihat detail"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2 pt-1">
+                                        <div class="stat-box-adaptive px-2.5 py-2 rounded-xl text-center">
+                                            <div class="text-xs sm:text-sm font-extrabold text-amber-500">173</div>
+                                            <div class="text-[10px] theme-text-muted font-medium">Peserta Dibimbing</div>
+                                        </div>
+                                        <div class="stat-box-adaptive px-2.5 py-2 rounded-xl text-center">
+                                            <div class="text-xs sm:text-sm font-extrabold text-emerald-500">10</div>
+                                            <div class="text-[10px] theme-text-muted font-medium">Ultimate Milestone</div>
+                                        </div>
+                                        <div class="stat-box-adaptive px-2.5 py-2 rounded-xl text-center">
+                                            <div class="text-xs sm:text-sm font-extrabold text-sky-500">Milestone 2</div>
+                                            <div class="text-[10px] theme-text-muted font-medium">500+ Skill Badges</div>
+                                        </div>
+                                    </div>
+                                    <ul class="text-xs theme-text-muted space-y-1 list-disc list-inside leading-relaxed pt-1">
+                                        <li>Membimbing peserta mempelajari cloud computing melalui Google Cloud Arcade &amp; praktik lab langsung.</li>
+                                        <li>Mendampingi troubleshooting kendala praktikum serta memantau progres pencapaian milestone program.</li>
+                                    </ul>
+                                    <div class="flex flex-wrap gap-1.5 pt-1">
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300">GCP</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300">Cloud Labs</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300">Technical Mentoring</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div onclick="openTimelineDetail('exp-ekraf')" role="button" tabindex="0" class="group relative p-4 sm:p-5 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/[0.06] via-transparent to-transparent hover:border-emerald-400/70 hover:-translate-y-0.5 hover:shadow-lg transition cursor-pointer">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-code text-base"></i>
+                                </div>
+                                <div class="flex-1 space-y-2">
+                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                        <div>
+                                            <h3 class="text-sm sm:text-base font-extrabold theme-text-main group-hover:text-emerald-400 transition">Front End Developer Intern</h3>
+                                            <div class="text-xs font-semibold text-emerald-500">EKRAF Kuningan</div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-mono-code text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold">Mei 2025 – Jul 2025</span>
+                                            <span class="text-emerald-400 text-xs" title="Lihat detail"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                                        </div>
+                                    </div>
+                                    <ul class="text-xs theme-text-muted space-y-1 list-disc list-inside leading-relaxed">
+                                        <li>Mengembangkan dan memelihara website <strong>Galeri Ekraf Kuningan</strong> menggunakan Laravel, Tailwind CSS, dan MySQL.</li>
+                                        <li>Melakukan pengujian fungsional, integrasi database konten, debugging, dan optimasi antarmuka aplikasi.</li>
+                                    </ul>
+                                    <div class="flex flex-wrap gap-1.5 pt-1">
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300">Laravel</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300">Tailwind CSS</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300">MySQL</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300">QA Testing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div onclick="openTimelineDetail('exp-kpps')" role="button" tabindex="0" class="group relative p-4 sm:p-5 rounded-2xl border border-sky-500/20 bg-gradient-to-br from-sky-500/[0.06] via-transparent to-transparent hover:border-sky-400/70 hover:-translate-y-0.5 hover:shadow-lg transition cursor-pointer">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-500/30 text-sky-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-check-to-slot text-base"></i>
+                                </div>
+                                <div class="flex-1 space-y-2">
+                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                        <div>
+                                            <h3 class="text-sm sm:text-base font-extrabold theme-text-main group-hover:text-sky-400 transition">KPPS (Kelompok Penyelenggara Pemungutan Suara)</h3>
+                                            <div class="text-xs font-semibold text-sky-400">Komisi Pemilihan Umum (KPU) — Pemilu &amp; Pilkada</div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-mono-code text-[11px] px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30 font-semibold">Mar–Apr 2024 &amp; Nov–Des 2024</span>
+                                            <span class="text-sky-400 text-xs" title="Lihat detail"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                                        </div>
+                                    </div>
+                                    <ul class="text-xs theme-text-muted space-y-1 list-disc list-inside leading-relaxed">
+                                        <li>Bertugas pada <strong>Pemilu (Maret – April 2024)</strong> dan <strong>Pilkada (November – Desember 2024)</strong> dalam pelaksanaan pemungutan serta rekapitulasi suara di TPS.</li>
+                                        <li>Mengoperasikan aplikasi digitalisasi <strong>Sirekap</strong> untuk pemindaian formulir C.Hasil, verifikasi angka, dan unggah laporan rekapitulasi secara akurat.</li>
+                                    </ul>
+                                    <div class="flex flex-wrap gap-1.5 pt-1">
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-300">Sirekap</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-300">OCR Verification</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-sky-500/10 text-sky-300">Pemilu &amp; Pilkada 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div onclick="openTimelineDetail('exp-pantarlih')" role="button" tabindex="0" class="group relative p-4 sm:p-5 rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/[0.06] via-transparent to-transparent hover:border-indigo-400/70 hover:-translate-y-0.5 hover:shadow-lg transition cursor-pointer">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-address-card text-base"></i>
+                                </div>
+                                <div class="flex-1 space-y-2">
+                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                        <div>
+                                            <h3 class="text-sm sm:text-base font-extrabold theme-text-main group-hover:text-indigo-400 transition">Pantarlih (Petugas Pemutakhiran Data Pemilih)</h3>
+                                            <div class="text-xs font-semibold text-indigo-400">Komisi Pemilihan Umum (KPU) — Pemilu &amp; Pilkada</div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-mono-code text-[11px] px-2.5 py-1 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-semibold">Jan 2023–Mar 2024 &amp; Jun–Jul 2024</span>
+                                            <span class="text-indigo-400 text-xs" title="Lihat detail"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                                        </div>
+                                    </div>
+                                    <ul class="text-xs theme-text-muted space-y-1 list-disc list-inside leading-relaxed">
+                                        <li>Melaksanakan pemutakhiran data pemilih pada <strong>Pemilu (Januari 2023 – Maret 2024)</strong> dan <strong>Pilkada (Juni – Juli 2024)</strong>.</li>
+                                        <li>Mengoperasikan sistem <strong>e-Coklit</strong> untuk pencocokan &amp; penelitian (coklit) data kependudukan, validasi NIK/KK, serta sinkronisasi daftar pemilih tetap.</li>
+                                    </ul>
+                                    <div class="flex flex-wrap gap-1.5 pt-1">
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-300">e-Coklit</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-300">Data Validation</span>
+                                        <span class="font-mono-code text-[10px] px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-300">Field Verification</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. GALERI SERTIFIKAT & PELATIHAN INTERAKTIF -->
+        <section id="gallery" class="space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-xs font-mono-code text-amber-500 mb-1">
+                        <i class="fa-solid fa-award"></i>
+                        <span>VERIFIED CREDENTIALS</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight theme-text-main">Galeri Sertifikat &amp; Pelatihan</h2>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button id="btn-mode-gallery" onclick="switchGalleryView('interactive')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 transition cursor-pointer">
+                        <i class="fa-solid fa-vr-cardboard mr-1.5"></i>Mode Galeri
+                    </button>
+                    <button id="btn-mode-list" onclick="switchGalleryView('list')" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold border border-slate-700/40 theme-text-muted hover:text-amber-500 transition cursor-pointer">
+                        <i class="fa-solid fa-list mr-1.5"></i>Daftar Ringkas
+                    </button>
+                </div>
+            </div>
+
+            <div id="gallery-interactive-wrapper" class="theme-card rounded-2xl overflow-hidden shadow-xl">
+                <div class="px-4 py-2.5 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <span class="ml-1.5 font-mono-code text-[11px] theme-text-muted">cert-gallery.app</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 text-xs font-mono-code">
+                        <span class="theme-text-muted">Dilihat: <strong id="visited-count" class="text-amber-500">0</strong>/<span id="total-cert-hud">6</span></span>
+                        <div class="w-20 sm:w-28 h-1.5 rounded-full bg-slate-700/40 overflow-hidden">
+                            <div id="minimap-bar" class="h-full bg-amber-500 transition-all duration-150" style="width: 10%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative bg-slate-950">
+                    <canvas id="museumCanvas"></canvas>
+                </div>
+
+                <div class="px-4 py-3 border-t border-slate-700/20 flex flex-wrap items-center justify-between gap-3 bg-slate-500/5">
+                    <div class="flex items-center gap-2">
+                        <button
+                            onmousedown="window.museumKeys.left = true"
+                            onmouseup="window.museumKeys.left = false"
+                            onmouseleave="window.museumKeys.left = false"
+                            ontouchstart="window.museumKeys.left = true"
+                            ontouchend="window.museumKeys.left = false"
+                            class="px-3.5 py-2 rounded-lg text-xs font-semibold border border-slate-700/40 theme-text-main hover:border-amber-500/60 active:scale-95 transition cursor-pointer"
+                        >
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Kiri
+                        </button>
+                        <button
+                            onmousedown="window.museumKeys.right = true"
+                            onmouseup="window.museumKeys.right = false"
+                            onmouseleave="window.museumKeys.right = false"
+                            ontouchstart="window.museumKeys.right = true"
+                            ontouchend="window.museumKeys.right = false"
+                            class="px-3.5 py-2 rounded-lg text-xs font-semibold border border-slate-700/40 theme-text-main hover:border-amber-500/60 active:scale-95 transition cursor-pointer"
+                        >
+                            Kanan <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+
+                    <button
+                        id="inspect-cert-btn"
+                        onclick="inspectNearestExhibit()"
+                        disabled
+                        class="px-4 py-2 rounded-lg text-xs font-semibold bg-slate-700/40 text-slate-400 border border-slate-700/40 transition cursor-not-allowed flex items-center gap-2"
+                    >
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span id="inspect-btn-label">Dekati Bingkai Sertifikat</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="gallery-list-wrapper" class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </section>
+
+        <!-- 4. PROYEK PILIHAN -->
+        <section id="projects" class="space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <div class="flex items-center gap-2 text-xs font-mono-code text-emerald-500 mb-1">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>FEATURED WORK</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight theme-text-main">Karya &amp; Proyek Pilihan</h2>
+                </div>
+                <span class="text-xs theme-text-muted flex items-center gap-1.5">
+                    <i class="fa-solid fa-images text-emerald-500"></i>
+                    <span>Klik kartu proyek untuk melihat detail &amp; dokumentasi</span>
+                </span>
+            </div>
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5"></div>
+        </section>
+
+        <!-- 5. SPESIALISASI & TECH STACK INTI -->
+        <section id="skills" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-1.5 h-7 rounded-full bg-rose-500 inline-block"></span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight theme-text-main">Spesialisasi &amp; Tech Stack Inti</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm theme-text-muted">Teknologi, arsitektur cloud, game development, dan metodologi rekayasa yang dikuasai.</p>
+                </div>
+                <span class="text-xs theme-text-muted flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-info text-amber-500"></i>
+                    <span>Klik item skill untuk melihat definisinya</span>
+                </span>
+            </div>
+
+            <div class="theme-card rounded-2xl p-6 sm:p-8 space-y-6 shadow-md">
+                <div class="space-y-3">
+                    <h3 class="text-base font-bold theme-text-main flex items-center gap-2.5">
+                        <i class="fa-solid fa-window-maximize text-rose-500"></i>
+                        <span>Frontend Development</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <button type="button" onclick="openSkillModal('React.js')" class="skill-pill"><i class="fa-brands fa-react text-sky-400"></i> React.js</button>
+                        <button type="button" onclick="openSkillModal('Next.js')" class="skill-pill"><i class="fa-solid fa-n text-slate-300"></i> Next.js</button>
+                        <button type="button" onclick="openSkillModal('JavaScript (ES6+)')" class="skill-pill"><i class="fa-brands fa-js text-amber-400"></i> JavaScript (ES6+)</button>
+                        <button type="button" onclick="openSkillModal('TypeScript')" class="skill-pill"><i class="fa-solid fa-code text-blue-400"></i> TypeScript</button>
+                        <button type="button" onclick="openSkillModal('Tailwind CSS')" class="skill-pill"><i class="fa-solid fa-wind text-cyan-400"></i> Tailwind CSS</button>
+                        <button type="button" onclick="openSkillModal('HTML5 & CSS3')" class="skill-pill"><i class="fa-brands fa-html5 text-orange-500"></i> HTML5 &amp; CSS3</button>
+                        <button type="button" onclick="openSkillModal('Vite')" class="skill-pill"><i class="fa-solid fa-bolt text-purple-400"></i> Vite</button>
+                    </div>
+                </div>
+
+                <hr class="border-dashed border-slate-700/40">
+
+                <div class="space-y-3">
+                    <h3 class="text-base font-bold theme-text-main flex items-center gap-2.5">
+                        <i class="fa-solid fa-server text-rose-500"></i>
+                        <span>Backend &amp; API</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <button type="button" onclick="openSkillModal('Laravel')" class="skill-pill"><i class="fa-brands fa-laravel text-rose-500"></i> Laravel</button>
+                        <button type="button" onclick="openSkillModal('PHP')" class="skill-pill"><i class="fa-brands fa-php text-indigo-400"></i> PHP</button>
+                        <button type="button" onclick="openSkillModal('RESTful API')" class="skill-pill"><i class="fa-solid fa-plug text-emerald-400"></i> RESTful API</button>
+                        <button type="button" onclick="openSkillModal('Google Cloud (GCP)')" class="skill-pill"><i class="fa-brands fa-google text-sky-400"></i> Google Cloud (GCP)</button>
+                        <button type="button" onclick="openSkillModal('Linux & Containerization')" class="skill-pill"><i class="fa-brands fa-linux text-amber-400"></i> Linux &amp; Containerization</button>
+                        <button type="button" onclick="openSkillModal('Unity & C# (Game Dev)')" class="skill-pill"><i class="fa-brands fa-unity text-slate-300"></i> Unity &amp; C# (Game Dev)</button>
+                        <button type="button" onclick="openSkillModal('Automation & Middleware')" class="skill-pill"><i class="fa-solid fa-diagram-project text-orange-400"></i> Automation &amp; Middleware</button>
+                    </div>
+                </div>
+
+                <hr class="border-dashed border-slate-700/40">
+
+                <div class="space-y-3">
+                    <h3 class="text-base font-bold theme-text-main flex items-center gap-2.5">
+                        <i class="fa-solid fa-database text-rose-500"></i>
+                        <span>Database &amp; Data</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <button type="button" onclick="openSkillModal('MySQL')" class="skill-pill"><i class="fa-solid fa-database text-sky-400"></i> MySQL</button>
+                        <button type="button" onclick="openSkillModal('MongoDB')" class="skill-pill"><i class="fa-solid fa-leaf text-emerald-500"></i> MongoDB</button>
+                        <button type="button" onclick="openSkillModal('JSON')" class="skill-pill"><i class="fa-solid fa-brackets-curly text-amber-400"></i> JSON</button>
+                        <button type="button" onclick="openSkillModal('Chart.js')" class="skill-pill"><i class="fa-solid fa-chart-pie text-pink-400"></i> Chart.js</button>
+                        <button type="button" onclick="openSkillModal('NLP')" class="skill-pill"><i class="fa-solid fa-language text-indigo-400"></i> NLP</button>
+                        <button type="button" onclick="openSkillModal('AI')" class="skill-pill"><i class="fa-solid fa-robot text-purple-400"></i> AI</button>
+                        <button type="button" onclick="openSkillModal('Machine Learning')" class="skill-pill"><i class="fa-solid fa-brain text-rose-400"></i> Machine Learning</button>
+                    </div>
+                </div>
+
+                <hr class="border-dashed border-slate-700/40">
+
+                <div class="space-y-3">
+                    <h3 class="text-base font-bold theme-text-main flex items-center gap-2.5">
+                        <i class="fa-solid fa-code-branch text-emerald-500"></i>
+                        <span>UI/UX &amp; Metodologi</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-2.5">
+                        <button type="button" onclick="openSkillModal('Figma')" class="skill-pill"><i class="fa-brands fa-figma text-pink-500"></i> Figma</button>
+                        <button type="button" onclick="openSkillModal('Pengujian Fungsional & QA')" class="skill-pill"><i class="fa-solid fa-vial-circle-check text-emerald-400"></i> Pengujian Fungsional &amp; QA</button>
+                        <button type="button" onclick="openSkillModal('Troubleshooting & Debugging')" class="skill-pill"><i class="fa-solid fa-screwdriver-wrench text-amber-400"></i> Troubleshooting &amp; Debugging</button>
+                        <button type="button" onclick="openSkillModal('Dokumentasi Teknis')" class="skill-pill"><i class="fa-solid fa-file-lines text-sky-400"></i> Dokumentasi Teknis</button>
+                        <button type="button" onclick="openSkillModal('Git & GitHub')" class="skill-pill"><i class="fa-brands fa-git-alt text-orange-500"></i> Git &amp; GitHub</button>
+                        <button type="button" onclick="openSkillModal('Network Configuration')" class="skill-pill"><i class="fa-solid fa-network-wired text-indigo-400"></i> Network Configuration</button>
+                        <button type="button" onclick="openSkillModal('Integrasi Sistem')" class="skill-pill"><i class="fa-solid fa-shield-check text-teal-400"></i> Integrasi Sistem</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. KONTAK & KORESPONDENSI -->
+        <section id="contact" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div class="lg:col-span-5 space-y-4">
+                <div class="flex items-center gap-2 text-xs font-mono-code text-sky-400">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>DIRECT CHANNEL</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight theme-text-main">Mari Berkolaborasi</h2>
+                <p class="text-xs sm:text-sm theme-text-muted leading-relaxed">
+                    Tertarik berdiskusi mengenai pengembangan sistem web, arsitektur cloud, game development, atau peluang profesional? Terhubung langsung melalui email, WhatsApp, maupun kanal sosial media berikut.
+                </p>
+
+                <div class="space-y-2.5 pt-1 text-xs sm:text-sm">
+                    <a href="mailto:muhammad.fachrul.reihan@gmail.com" class="theme-card p-3.5 rounded-xl flex items-center justify-between gap-3 hover:border-amber-500/60 group">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-500 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <div class="truncate">
+                                <div class="text-[10px] font-mono-code uppercase tracking-wider theme-text-muted">Email</div>
+                                <div class="theme-text-main font-semibold truncate">muhammad.fachrul.reihan@gmail.com</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs theme-text-muted group-hover:text-amber-500 transition"></i>
+                    </a>
+
+                    <a href="https://wa.me/6285860686095" target="_blank" rel="noopener" class="theme-card p-3.5 rounded-xl flex items-center justify-between gap-3 hover:border-emerald-500/60 group">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-500 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                            </span>
+                            <div class="truncate">
+                                <div class="text-[10px] font-mono-code uppercase tracking-wider theme-text-muted">WhatsApp</div>
+                                <div class="theme-text-main font-semibold">+62 858-6068-6095</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs theme-text-muted group-hover:text-emerald-500 transition"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2.5 pt-0.5 text-xs">
+                    <a href="https://www.linkedin.com/in/muhammad-fachrul-reihan-fauzian-2274a3285/" target="_blank" rel="noopener" class="theme-card p-3 rounded-xl flex items-center gap-2.5 hover:border-sky-500/60 group">
+                        <span class="w-8 h-8 rounded-lg bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0">
+                            <i class="fa-brands fa-linkedin-in text-sm"></i>
+                        </span>
+                        <div class="min-w-0">
+                            <div class="font-bold theme-text-main group-hover:text-sky-400 transition">LinkedIn</div>
+                            <div class="text-[11px] theme-text-muted truncate">Muhammad Fachrul Reihan Fauzian</div>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/fchrulziyyan" target="_blank" rel="noopener" class="theme-card p-3 rounded-xl flex items-center gap-2.5 hover:border-slate-400/60 group">
+                        <span class="w-8 h-8 rounded-lg bg-slate-500/15 theme-text-main flex items-center justify-center shrink-0">
+                            <i class="fa-brands fa-github text-sm"></i>
+                        </span>
+                        <div class="min-w-0">
+                            <div class="font-bold theme-text-main group-hover:text-amber-400 transition">GitHub</div>
+                            <div class="text-[11px] theme-text-muted truncate">fchrulziyyan</div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.instagram.com/rullz15_/" target="_blank" rel="noopener" class="theme-card p-3 rounded-xl flex items-center gap-2.5 hover:border-pink-500/60 group">
+                        <span class="w-8 h-8 rounded-lg bg-pink-500/15 text-pink-400 flex items-center justify-center shrink-0">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </span>
+                        <div class="min-w-0">
+                            <div class="font-bold theme-text-main group-hover:text-pink-400 transition">Instagram</div>
+                            <div class="text-[11px] theme-text-muted truncate">@rullz15_</div>
+                        </div>
+                    </a>
+
+                    <div class="theme-card p-3 rounded-xl flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-location-dot text-sm"></i>
+                        </span>
+                        <div class="min-w-0">
+                            <div class="font-bold theme-text-main">Domisili</div>
+                            <div class="text-[11px] theme-text-muted truncate">Jawa Barat, ID</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 theme-card rounded-2xl overflow-hidden shadow-lg">
+                <div class="px-4 py-2.5 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <span class="ml-1.5 font-mono-code text-[11px] theme-text-muted">contact.channel</span>
+                    </div>
+                    <span class="font-mono-code text-[10px] text-emerald-500">ONLINE</span>
+                </div>
+
+                <form id="direct-contact-form" onsubmit="handleContactSubmit(event)" class="p-6 sm:p-7 space-y-4">
+                    <div class="space-y-1">
+                        <h3 class="text-lg sm:text-xl font-extrabold theme-text-main flex items-center gap-2.5">
+                            <i class="fa-regular fa-message text-amber-500 text-base"></i>
+                            <span>Kirim Pesan Langsung</span>
+                        </h3>
+                        <p class="text-xs theme-text-muted leading-relaxed">
+                            Isi formulir di bawah ini untuk mengirim pesan langsung atau klik tombol WhatsApp untuk percakapan instan.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                        <div>
+                            <label for="contact-name" class="block text-xs font-bold theme-text-main mb-1.5">
+                                Nama Lengkap <span class="text-amber-500">*</span>
+                            </label>
+                            <input
+                                id="contact-name"
+                                type="text"
+                                required
+                                placeholder="Contoh: Reihan Setyawan"
+                                class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-500/10 border border-slate-700/35 theme-text-main placeholder:text-slate-400 focus:outline-none focus:border-amber-500 transition"
+                            >
+                        </div>
+                        <div>
+                            <label for="contact-email" class="block text-xs font-bold theme-text-main mb-1.5">
+                                Alamat Email <span class="text-amber-500">*</span>
+                            </label>
+                            <input
+                                id="contact-email"
+                                type="email"
+                                required
+                                placeholder="nama@perusahaan.com"
+                                class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-500/10 border border-slate-700/35 theme-text-main placeholder:text-slate-400 focus:outline-none focus:border-amber-500 transition"
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="contact-subject" class="block text-xs font-bold theme-text-main mb-1.5">Subjek / Topik</label>
+                        <input
+                            id="contact-subject"
+                            type="text"
+                            placeholder="Contoh: Diskusi Proyek Web & Cloud"
+                            class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-500/10 border border-slate-700/35 theme-text-main placeholder:text-slate-400 focus:outline-none focus:border-amber-500 transition"
+                        >
+                    </div>
+
+                    <div>
+                        <label for="contact-message" class="block text-xs font-bold theme-text-main mb-1.5">
+                            Pesan Anda <span class="text-amber-500">*</span>
+                        </label>
+                        <textarea
+                            id="contact-message"
+                            rows="4"
+                            required
+                            placeholder="Ceritakan gambaran kebutuhan sistem, pertanyaan, atau ide proyek Anda di sini..."
+                            class="w-full px-3.5 py-2.5 rounded-xl text-xs bg-slate-500/10 border border-slate-700/35 theme-text-main placeholder:text-slate-400 focus:outline-none focus:border-amber-500 transition"
+                        ></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <button
+                            type="submit"
+                            class="w-full py-3 px-5 rounded-full bg-amber-500 hover:bg-amber-400 active:scale-[0.99] text-slate-950 font-bold text-xs sm:text-sm shadow-md shadow-amber-500/20 flex items-center justify-center gap-2 transition cursor-pointer"
+                        >
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>Kirim Formulir</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="sendContactToWhatsApp()"
+                            class="w-full py-3 px-5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 active:scale-[0.99] text-emerald-400 border border-emerald-500/40 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer"
+                        >
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Chat WhatsApp</span>
+                        </button>
+                    </div>
+
+                    <div id="contact-feedback" class="hidden text-xs font-medium text-emerald-500 pt-1"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-700/20 py-8 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs theme-text-muted">
+            <div>© 2026 <strong class="theme-text-main">Muhammad Fachrul Reihan Fauzian (Ziyyan)</strong>. All rights reserved.</div>
+            <div class="font-mono-code text-[11px]">Built with precision • ZiyyanOS Portfolio</div>
+        </div>
+    </footer>
+
+    <!-- MODALS: TIMELINE, PROJECT, SKILL, VAULT NOTE, CERTIFICATE -->
+    <div id="timeline-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+        <div class="max-w-lg w-full theme-card rounded-2xl overflow-hidden shadow-2xl">
+            <div class="px-4 py-3 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span id="td-modal-file" class="ml-2 font-mono-code text-[11px] theme-text-muted">detail.log</span>
+                </div>
+                <button onclick="closeTimelineDetail()" class="w-7 h-7 rounded-lg flex items-center justify-center theme-text-muted hover:text-rose-400 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <span id="td-modal-org" class="font-bold text-amber-500">Instansi</span>
+                    <span id="td-modal-period" class="font-mono-code theme-text-muted">Periode</span>
+                </div>
+                <div>
+                    <h3 id="td-modal-title" class="text-lg font-extrabold theme-text-main">Judul Peran / Pendidikan</h3>
+                    <div id="td-modal-sub" class="text-xs font-medium text-emerald-500 mt-0.5">Subjudul</div>
+                </div>
+                <p id="td-modal-summary" class="text-xs sm:text-sm theme-text-muted leading-relaxed"></p>
+                <div class="space-y-2">
+                    <div class="font-mono-code text-[11px] uppercase tracking-wider theme-text-muted">Poin Utama &amp; Pencapaian:</div>
+                    <ul id="td-modal-highlights" class="list-disc list-inside text-xs theme-text-muted space-y-1.5 leading-relaxed"></ul>
+                </div>
+                <div id="td-modal-tags" class="flex flex-wrap gap-1.5 pt-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="project-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+        <div class="max-w-2xl w-full theme-card rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="px-4 py-3 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5 shrink-0">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span id="proj-modal-file" class="ml-2 font-mono-code text-[11px] theme-text-muted">project.showcase</span>
+                </div>
+                <button onclick="closeProjectModal()" class="w-7 h-7 rounded-lg flex items-center justify-center theme-text-muted hover:text-rose-400 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-5">
+                <div class="space-y-2">
+                    <div class="relative aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-700/40">
+                        <img id="proj-modal-main-img" src="" onerror="this.src='https://placehold.co/900x500/1e293b/fbbf24?text=Project+Documentation'" alt="Dokumentasi Proyek" class="w-full h-full object-cover">
+                    </div>
+                    <div id="proj-modal-img-caption" class="text-[11px] font-mono-code theme-text-muted text-center">Dokumentasi Proyek</div>
+                    <div id="proj-modal-thumbs" class="grid grid-cols-3 gap-2.5 pt-1"></div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+                        <span id="proj-modal-role" class="font-bold text-amber-500">Role</span>
+                        <span id="proj-modal-year" class="font-mono-code theme-text-muted">Tahun</span>
+                    </div>
+                    <h3 id="proj-modal-title" class="text-lg sm:text-xl font-extrabold theme-text-main">Judul Proyek</h3>
+                    <p id="proj-modal-overview" class="text-xs sm:text-sm theme-text-muted leading-relaxed"></p>
+                </div>
+                <div class="space-y-2">
+                    <div class="font-mono-code text-[11px] uppercase tracking-wider theme-text-muted">Kontribusi &amp; Implementasi Teknis:</div>
+                    <ul id="proj-modal-features" class="list-disc list-inside text-xs theme-text-muted space-y-1.5 leading-relaxed"></ul>
+                </div>
+                <div id="proj-modal-tags" class="flex flex-wrap gap-1.5 pt-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="skill-detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+        <div class="max-w-md w-full theme-card rounded-2xl overflow-hidden shadow-2xl">
+            <div class="px-4 py-3 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                <span id="skill-modal-category" class="font-mono-code text-[11px] text-amber-500 font-semibold">Category</span>
+                <button onclick="closeSkillModal()" class="w-7 h-7 rounded-lg flex items-center justify-center theme-text-muted hover:text-rose-400 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-3">
+                <h3 id="skill-modal-name" class="text-lg font-extrabold theme-text-main">Skill Name</h3>
+                <p id="skill-modal-def" class="text-xs sm:text-sm theme-text-muted leading-relaxed"></p>
+                <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/25 space-y-1">
+                    <div class="font-mono-code text-[10px] font-bold uppercase text-amber-500">Penerapan dalam Proyek:</div>
+                    <p id="skill-modal-use" class="text-xs theme-text-main leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vault-note-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+        <div class="max-w-md w-full rounded-2xl bg-[#fef9c3] text-slate-800 border-2 border-amber-400/80 shadow-2xl overflow-hidden">
+            <div class="px-4 py-2.5 bg-amber-200/70 border-b border-amber-400/50 flex items-center justify-between">
+                <div class="flex items-center gap-2 font-mono-code text-[11px] font-bold text-amber-900">
+                    <i class="fa-regular fa-note-sticky text-amber-700"></i>
+                    <span>memo_tempel_dinding.txt</span>
+                </div>
+                <button onclick="closeVaultNoteModal()" class="w-7 h-7 rounded-lg flex items-center justify-center text-amber-900/70 hover:text-rose-600 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+                    "Catatan buat diri sendiri: jangan pernah iseng ngetik perintah aneh-aneh di terminal workstation pas lagi presentasi..."
+                </p>
+                <div class="p-3.5 rounded-xl bg-amber-100/90 border border-amber-400/60 font-mono-code text-xs text-slate-800 space-y-1">
+                    <div class="text-[10px] uppercase tracking-wider text-amber-800 font-bold">Coretan di bagian bawah kertas:</div>
+                    <div>• coba ketik <span class="px-1.5 py-0.5 rounded bg-slate-900 text-amber-300 font-bold">secret</span> di terminal</div>
+                </div>
+                <div class="flex justify-end">
+                    <button onclick="closeVaultNoteModal()" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-amber-300 font-semibold text-xs transition cursor-pointer">
+                        Tutup Catatan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="certificate-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+        <div class="max-w-2xl w-full theme-card rounded-2xl overflow-hidden shadow-2xl">
+            <div class="px-4 py-3 border-b border-slate-700/20 flex items-center justify-between bg-slate-500/5">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span id="modal-cert-id" class="ml-1.5 font-mono-code text-[11px] text-amber-500 font-bold">CERT-ID</span>
+                </div>
+                <button onclick="closeCertModal()" class="w-7 h-7 rounded-lg flex items-center justify-center theme-text-muted hover:text-rose-400 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <a id="modal-cert-file-link" href="#" target="_blank" rel="noopener" title="Klik untuk membuka dokumen sertifikat penuh (PDF / Scan)" class="group relative block rounded-xl overflow-hidden focus:outline-none">
+                    <img id="modal-cert-uploaded-img" src="" alt="Scan Sertifikat" class="hidden w-full rounded-xl border border-amber-500/40 shadow-lg object-contain max-h-[380px] bg-slate-950 group-hover:opacity-90 transition">
+                    <canvas id="modal-cert-pdf-canvas" class="hidden max-h-[420px] w-auto max-w-full mx-auto rounded-xl border border-amber-500/40 shadow-lg bg-white object-contain group-hover:opacity-90 transition"></canvas>
+                    <div id="modal-cert-template" class="relative rounded-xl border-4 border-amber-500/70 bg-gradient-to-br from-slate-50 via-amber-50/40 to-slate-100 text-slate-900 p-6 sm:p-8 shadow-inner overflow-hidden group-hover:border-amber-400 transition">
+                        <div class="absolute inset-2 border border-amber-600/30 rounded-lg pointer-events-none"></div>
+                        <div class="relative text-center space-y-3">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-600/30 text-amber-800 font-mono-code text-[10px] font-bold uppercase tracking-widest">
+                                <i class="fa-solid fa-award text-amber-600"></i>
+                                <span id="cert-doc-issuer-top">Penerbit Resmi</span>
+                            </div>
+                            <div class="text-[11px] uppercase tracking-[0.22em] text-slate-500 font-semibold">Certificate of Achievement</div>
+                            <div class="text-xs text-slate-500">Diberikan secara resmi kepada:</div>
+                            <div class="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight border-b-2 border-amber-500/50 pb-2 max-w-md mx-auto">
+                                Muhammad Fachrul Reihan Fauzian
+                            </div>
+                            <div class="text-xs text-slate-600">Atas kelulusan &amp; pencapaian kompetensi pada program:</div>
+                            <h3 id="modal-cert-title" class="text-base sm:text-xl font-extrabold text-amber-800">Judul Sertifikat</h3>
+                            <div class="pt-3 flex items-center justify-between text-[11px] text-slate-600 max-w-md mx-auto">
+                                <div class="text-left">
+                                    <div class="font-bold text-slate-800" id="modal-cert-issuer">Issuer</div>
+                                    <div>Tahun Terbit: <span id="modal-cert-year" class="font-bold">2025</span></div>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-amber-500/20 border-2 border-amber-600 flex flex-col items-center justify-center text-amber-800 font-mono-code text-[8px] font-extrabold leading-tight">
+                                    <i class="fa-solid fa-circle-check text-sm text-emerald-700"></i>
+                                    <span>VERIFIED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span id="modal-cert-open-badge" class="hidden absolute bottom-3 right-3 px-3 py-1.5 rounded-lg bg-slate-950/90 text-amber-300 border border-amber-400/60 text-xs font-bold shadow-xl items-center gap-1.5 group-hover:bg-amber-500 group-hover:text-slate-950 transition">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Buka Dokumen Sertifikat</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </span>
+                </a>
+                <p id="modal-cert-desc" class="text-xs sm:text-sm theme-text-muted leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ZIYYANOS TERMINAL CLI -->
+    <div id="cheat-console-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+        <div class="max-w-2xl w-full rounded-2xl bg-slate-950 border border-slate-700 overflow-hidden shadow-2xl font-mono-code text-xs text-slate-200">
+            <div class="px-4 py-2.5 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span class="ml-2 text-[11px] text-slate-400">ziyyan-os@workstation: ~ (bash)</span>
+                </div>
+                <button onclick="closeCheatConsole()" class="text-slate-400 hover:text-rose-400 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="terminal-output-log" class="p-4 h-64 overflow-y-auto space-y-1.5 leading-relaxed">
+                <div class="text-emerald-400 font-bold">Welcome to ZiyyanOS Interactive Shell v2.6 (Desktop Edition)</div>
+                <div class="text-slate-400">Ketik <span class="text-amber-300 font-bold">help</span> untuk melihat daftar perintah, atau ketik <span class="text-sky-400 font-bold">village</span> untuk masuk ke Peta Desa Interaktif.</div>
+            </div>
+            <form onsubmit="submitCheatCode(event)" class="px-4 py-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2">
+                <span class="text-emerald-400 font-bold shrink-0">guest@ziyyan-os:~$</span>
+                <input
+                    id="cheat-code-input"
+                    type="text"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="Ketik perintah (misal: help, village, neofetch)..."
+                    class="w-full bg-transparent text-white focus:outline-none placeholder:text-slate-600"
+                >
+            </form>
+        </div>
+    </div>
+
+    <!-- SIMULASI NOTIFIKASI WHATSAPP -->
+    <div id="wa-secret-toast-container" class="flex fixed bottom-5 right-5 z-40 flex-col items-end gap-2.5 max-w-[330px] w-[calc(100vw-2.5rem)] pointer-events-none"></div>
+
+    <!-- EASTER EGG #1: GLITCH & MATRIX OVERLAY -->
+    <div id="glitch-prank-overlay" class="fixed inset-0 z-[70] hidden flex-col items-center justify-center p-4 sm:p-6 bg-slate-950/90 backdrop-blur-md font-mono select-none overflow-hidden transition-opacity duration-300">
+        <canvas id="matrixPrankCanvas" class="absolute inset-0 w-full h-full opacity-65 pointer-events-none"></canvas>
+        <div class="crt-scanlines absolute inset-0 pointer-events-none"></div>
+        <div id="glitch-prank-card" class="relative z-10 max-w-lg w-full border border-emerald-500/60 bg-slate-950/95 rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(16,185,129,0.35)]">
+            <div id="glitch-prank-header" class="px-4 py-2.5 bg-emerald-950/70 border-b border-emerald-500/30 flex items-center justify-between text-[11px] transition-colors duration-300">
+                <span id="glitch-prank-badge" class="text-emerald-300 font-bold"><i class="fa-solid fa-terminal mr-1.5"></i>ZIYYANOS_OVERRIDE // ROOT_ACCESS</span>
+                <span class="text-emerald-400 animate-pulse">● LIVE TRACE</span>
+            </div>
+            <div class="p-6 space-y-4 text-left">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-rose-500/15 border border-rose-500/40 text-rose-400 flex items-center justify-center text-xl shrink-0">
+                        <i id="glitch-prank-icon" class="fa-solid fa-skull-crossbones"></i>
+                    </div>
+                    <div>
+                        <div id="glitch-prank-title" class="text-base sm:text-lg font-extrabold text-rose-400 tracking-wide">CONNECTION INTERRUPTED</div>
+                        <div id="glitch-prank-sub" class="text-[11px] text-slate-400">Unauthorized shell hook detected on tty1...</div>
+                    </div>
+                </div>
+                <div id="glitch-prank-console" class="p-3.5 rounded-xl bg-black/90 border border-slate-800 text-[11px] text-emerald-400 space-y-1.5 min-h-[155px] max-h-[210px] overflow-y-auto"></div>
+                <div class="space-y-2.5">
+                    <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800">
+                        <div id="glitch-prank-bar" class="h-full bg-gradient-to-r from-rose-500 via-amber-400 to-emerald-400 transition-all duration-300" style="width: 10%;"></div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span id="glitch-prank-status" class="text-[11px] text-slate-400">Tracing process PID 4092...</span>
+                        <button id="glitch-reboot-btn" onclick="finishGlitchPrank()" class="hidden px-4 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition cursor-pointer">
+                            <i class="fa-solid fa-power-off mr-1"></i> Lanjut Eksplorasi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EASTER EGG #2: LAYAR BEREMBUN -->
+    <div id="mist-glass-overlay" class="fixed inset-0 z-[75] hidden select-none overflow-hidden">
+        <canvas id="mistGlassCanvas" class="block w-full h-full cursor-crosshair touch-none"></canvas>
+        <div class="fixed top-4 right-4 z-10 flex items-center gap-2 pointer-events-auto">
+            <button onclick="resetMistGlass()" class="px-3.5 py-2 rounded-xl bg-slate-950/75 hover:bg-slate-900 text-slate-200 border border-white/15 backdrop-blur-md text-xs font-semibold transition cursor-pointer shadow-lg">
+                <i class="fa-solid fa-rotate-right mr-1.5 text-sky-400"></i>Embunkan Lagi
+            </button>
+            <button onclick="closeMistGlass()" class="px-3.5 py-2 rounded-xl bg-slate-950/75 hover:bg-rose-600 text-slate-200 hover:text-white border border-white/15 backdrop-blur-md text-xs font-semibold transition cursor-pointer shadow-lg">
+                <i class="fa-solid fa-xmark mr-1"></i>Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- EASTER EGG #3: BSOD & END CREDITS -->
+    <div id="bsod-prank-overlay" class="fixed inset-0 z-[99] hidden bsod-authentic-bg text-white select-none overflow-hidden flex-col justify-between p-10 sm:p-16 md:px-28 md:py-20">
+        <div class="max-w-3xl space-y-6 my-auto">
+            <div class="text-7xl sm:text-[110px] font-light tracking-tight text-white leading-none pb-2">:(</div>
+            <p id="bsod-main-msg" class="text-lg sm:text-2xl md:text-[26px] leading-snug text-white font-light">
+                Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.
+            </p>
+            <div class="flex items-center gap-3 text-base sm:text-xl text-white font-light pt-2">
+                <span id="bsod-spinner" class="inline-block w-5 h-5 rounded-full border-2 border-white/90 border-t-transparent animate-spin"></span>
+                <span><span id="bsod-percent">0</span>% complete</span>
+            </div>
+            <div class="pt-6 space-y-1.5 text-xs sm:text-sm text-white/95 font-light leading-relaxed">
+                <div>For more information about this issue and possible fixes, visit https://www.windows.com/stopcode</div>
+                <div class="pt-1">If you call a support person, give them this info:</div>
+                <div>Stop code: <span id="bsod-stopcode" class="font-normal">CURIOSITY_KILLED_THE_CAT_EXCEPTION</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="end-credits-overlay" class="fixed inset-0 z-[100] hidden bg-black text-white select-none overflow-hidden flex-col items-center justify-center">
+        <div class="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black via-black/80 to-transparent z-10"></div>
+        <div class="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black via-black/80 to-transparent z-10"></div>
+        <button onclick="exitEndCredits()" class="fixed top-5 right-6 z-20 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white border border-white/15 font-mono-code text-[11px] transition cursor-pointer">
+            ESC / Skip Credits →
+        </button>
+        <div id="credits-roll-track" class="w-full max-w-xl px-6 text-center space-y-12">
+            <div class="space-y-2">
+                <div class="font-mono-code text-xs tracking-[0.35em] text-amber-400 uppercase">ZiyyanOS Interactive Experience</div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">AYAH, KENAPA AKU GA LOLOS MAGANGHUB?</h2>
+                <p class="text-xs text-slate-400">Sebuah perjalanan kecil di balik layar portofolio</p>
+            </div>
+            <div class="space-y-6 text-xs sm:text-sm">
+                <div>
+                    <div class="font-mono-code text-[10px] uppercase tracking-[0.25em] text-slate-500">Created, Designed &amp; Engineered By</div>
+                    <div class="text-base sm:text-lg font-bold text-white mt-1">Muhammad Fachrul Reihan Fauzian (Ziyyan)</div>
+                </div>
+                <div>
+                    <div class="font-mono-code text-[10px] uppercase tracking-[0.25em] text-slate-500">Special Guest &amp; Chief Curiosity Officer</div>
+                    <div class="text-base sm:text-lg font-bold text-amber-300 mt-1">Kamu (The Curious Explorer)</div>
+                </div>
+                <div>
+                    <div class="font-mono-code text-[10px] uppercase tracking-[0.25em] text-slate-500">Executive Producer</div>
+                    <div class="text-sm sm:text-base font-semibold text-slate-200 mt-1">Secangkir Kopi Hitam &amp; Begadang Larut Malam</div>
+                </div>
+                <div>
+                    <div class="font-mono-code text-[10px] uppercase tracking-[0.25em] text-slate-500">Lead Bug &amp; Exception Stunt Double</div>
+                    <div class="text-sm sm:text-base font-semibold text-slate-200 mt-1">CURIOSITY_KILLED_THE_CAT_EXCEPTION (0x00000050)</div>
+                </div>
+                <div>
+                    <div class="font-mono-code text-[10px] uppercase tracking-[0.25em] text-slate-500">Visual Effects &amp; Condensation Dept.</div>
+                    <div class="text-sm sm:text-base font-semibold text-slate-200 mt-1">HTML5 Canvas • Vite • Supabase • Tailwind CSS</div>
+                </div>
+                <div>
+                    <div class="font-mono-code text-[10px] uppercase tracking-[0.25em] text-slate-500">Filmed On Location</div>
+                    <div class="text-sm sm:text-base font-semibold text-slate-200 mt-1">localhost:5173 &amp; Cloud Clusters — Kuningan, Jawa Barat</div>
+                </div>
+            </div>
+            <div class="pt-4 space-y-2 text-xs text-slate-400 italic">
+                <p>"Tidak ada sistem operasi atau laptop sungguhan yang tersakiti selama pembuatan simulasi ini."</p>
+            </div>
+            <div class="pt-12 pb-20 space-y-5">
+                <div class="w-12 h-0.5 bg-amber-400/60 mx-auto rounded-full"></div>
+                <div class="space-y-2">
+                    <h3 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Thank You!</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                        Terima kasih sudah meluangkan waktu untuk menjelajahi setiap sudut dan rahasia kecil di portofolio ini. Sampai jumpa di kolaborasi berikutnya!
+                    </p>
+                </div>
+                <div class="pt-3">
+                    <button onclick="exitEndCredits()" class="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm shadow-lg shadow-amber-500/20 transition cursor-pointer">
+                        Kembali ke Portofolio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY VILLAGE MAP -->
+    <div id="rpg-village-overlay" class="fixed inset-0 z-50 hidden flex-col bg-slate-950 text-slate-100 select-none">
+        <div class="h-14 px-4 bg-slate-900/95 border-b border-slate-800 flex items-center justify-between gap-3 shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                </div>
+                <span id="village-hud-title" class="font-mono-code text-xs sm:text-sm font-bold text-amber-400">
+                    ZIYYANOS VILLAGE MAP — Point &amp; Click Explorer
+                </span>
+            </div>
+
+            <div class="flex items-center gap-2">
+    <button id="village-replay-cutscene-btn" onclick="startVillageWelcomeCutscene()" class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-semibold cursor-pointer transition">
+        <i class="fa-solid fa-comment-dots mr-1"></i> Sambutan
+    </button>
+    
+    <button onclick="exitVillageMode()" class="px-3 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/40 text-xs font-semibold transition cursor-pointer">
+        <i class="fa-solid fa-xmark mr-1"></i> Kembali ke Web
+    </button>
+</div>
+        </div>
+
+<div id="village-map-stage" class="relative flex-1 flex items-center justify-center bg-slate-950 overflow-hidden p-5 sm:p-8">
+            <div id="village-map-container" class="relative h-full max-h-[calc(100vh-7.5rem)] w-auto max-w-full aspect-[3/2] rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900">
+                <img
+                  id="village-map-image"
+                  src="/images/village-map.jpg"
+                  alt="Peta Desa Interaktif ZiyyanOS"
+                  class="w-full h-full object-cover"
+                >
+
+                <!-- Hotspot 5 Bangunan -->
+                <div id="village-hotspots-layer" class="absolute inset-0">
+                    <button onclick="enterFirstPersonRoom('about')" style="left: 7%; top: 7%; width: 22%; height: 28%;" class="group absolute rounded-2xl border-2 border-transparent hover:border-amber-400/80 hover:bg-amber-400/10 transition cursor-pointer focus:outline-none">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap px-3 py-1 rounded-lg bg-slate-950/95 text-amber-300 border border-amber-400/60 text-xs font-bold shadow-xl">🏠 Tentang Saya</span>
+                    </button>
+                    <button onclick="enterFirstPersonRoom('projects')" style="left: 7%; top: 53%; width: 23%; height: 34%;" class="group absolute rounded-2xl border-2 border-transparent hover:border-emerald-400/80 hover:bg-emerald-400/10 transition cursor-pointer focus:outline-none">
+                        <span class="opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap px-3 py-1 rounded-lg bg-slate-950/95 text-emerald-300 border border-emerald-400/60 text-xs font-bold shadow-xl">🎨 Project Saya</span>
+                    </button>
+                    <button onclick="enterFirstPersonRoom('contact')" style="left: 36%; top: 10%; width: 25%; height: 32%;" class="group absolute rounded-2xl border-2 border-transparent hover:border-sky-400/80 hover:bg-sky-400/10 transition cursor-pointer focus:outline-none">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap px-3 py-1 rounded-lg bg-slate-950/95 text-sky-300 border border-sky-400/60 text-xs font-bold shadow-xl">📞 Hubungi Saya</span>
+                    </button>
+                    <button onclick="enterFirstPersonRoom('gallery')" style="left: 68%; top: 6%; width: 26%; height: 35%;" class="group absolute rounded-2xl border-2 border-transparent hover:border-amber-400/80 hover:bg-amber-400/10 transition cursor-pointer focus:outline-none">
+                        <span class="opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap px-3 py-1 rounded-lg bg-slate-950/95 text-amber-300 border border-amber-400/60 text-xs font-bold shadow-xl">🏛️ Galeri Sertifikat</span>
+                    </button>
+                    <button onclick="enterFirstPersonRoom('education')" style="left: 48%; top: 60%; width: 18%; height: 24%;" class="group absolute rounded-2xl border-2 border-transparent hover:border-violet-400/80 hover:bg-violet-400/10 transition cursor-pointer focus:outline-none">
+                        <span class="opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-y-0 transition-all duration-200 pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap px-3 py-1 rounded-lg bg-slate-950/95 text-violet-300 border border-violet-400/60 text-xs font-bold shadow-xl">🎓 Riwayat Pendidikan</span>
+                    </button>
+                </div>
+
+                <!-- CUTSCENE DIALOG SAMBUTAN KARAKTER ZIYYAN -->
+                <div id="village-welcome-cutscene" class="hidden absolute inset-0 z-40 flex-col justify-end p-3 sm:p-6 bg-slate-950/60 backdrop-blur-[2px] transition-opacity duration-300">
+                    <div class="max-w-3xl w-full mx-auto rounded-2xl bg-slate-950/95 border-2 border-amber-400/80 shadow-[0_18px_50px_rgba(0,0,0,0.85)] overflow-hidden">
+                        <div class="px-4 py-2 bg-amber-500/15 border-b border-amber-400/30 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span class="font-mono-code text-[11px] font-bold text-amber-300 tracking-wide">ZIYYAN // VILLAGE GUIDE</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span id="cutscene-step-indicator" class="font-mono-code text-[10px] text-slate-400">1 / 4</span>
+                                <button type="button" onclick="closeVillageWelcomeCutscene()" class="font-mono-code text-[11px] text-slate-400 hover:text-rose-400 transition cursor-pointer">
+                                    Skip [ESC] ✕
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="p-4 sm:p-5 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+                            <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-xl bg-white border-2 border-amber-400/80 flex items-center justify-center shrink-0 shadow-inner relative overflow-hidden">
+                                <img
+                                    id="cutscene-character-img"
+                                    src="/images/char-ziyyan.jpg"
+                                    alt="Karakter Pixel Art Ziyyan"
+                                    class="w-full h-full object-contain object-top p-0.5 select-none"
+                                    style="image-rendering: pixelated;"
+                                    onerror="onCutsceneCharacterImgError()"
+                                >
+                                <svg id="cutscene-character-fallback" viewBox="0 0 36 44" class="hidden w-full h-full p-1" style="image-rendering: pixelated;">
+                                    <rect x="10" y="2" width="16" height="4" fill="#1c1917"/>
+                                    <rect x="8" y="4" width="20" height="7" fill="#1c1917"/>
+                                    <rect x="7" y="12" width="2" height="4" fill="#fdba74"/>
+                                    <rect x="27" y="12" width="2" height="4" fill="#fdba74"/>
+                                    <rect x="9" y="9" width="18" height="11" fill="#fed7aa"/>
+                                    <rect x="9" y="12" width="8" height="5" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/>
+                                    <rect x="17" y="13" width="2" height="1" fill="#64748b"/>
+                                    <rect x="19" y="12" width="8" height="5" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/>
+                                    <rect x="12" y="14" width="3" height="1.5" fill="#0f172a"/>
+                                    <rect x="21" y="14" width="3" height="1.5" fill="#0f172a"/>
+                                    <rect x="16" y="18" width="4" height="1" fill="#9a3412"/>
+                                    <rect x="7" y="20" width="22" height="13" fill="#1e293b"/>
+                                    <rect x="9" y="33" width="18" height="9" fill="#18181b"/>
+                                    <rect x="9" y="42" width="7" height="2" fill="#09090b"/>
+                                    <rect x="20" y="42" width="7" height="2" fill="#09090b"/>
+                                </svg>
+                                <span class="absolute bottom-0.5 right-1 font-mono-code text-[8px] px-1 rounded bg-amber-500 text-slate-950 font-extrabold">HOST</span>
+                            </div>
+
+                            <div class="flex-1 min-w-0 space-y-2 text-center sm:text-left">
+                                <div id="cutscene-speaker-tag" class="inline-block font-mono-code text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold">
+                                    Selamat Datang!
+                                </div>
+                                <p id="cutscene-dialog-text" class="text-xs sm:text-sm text-slate-100 leading-relaxed min-h-[3.5rem]"></p>
+                            </div>
+                        </div>
+
+                        <div class="px-4 py-2.5 bg-slate-900/90 border-t border-slate-800 flex items-center justify-between gap-2">
+                            <span class="text-[11px] text-slate-400">Klik <strong class="text-amber-300">Lanjut</strong> atau tekan <kbd class="px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-[10px] text-slate-300">Spasi / Enter</kbd></span>
+                            <button id="cutscene-next-btn" type="button" onclick="nextVillageCutsceneStep()" class="px-4 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition cursor-pointer flex items-center gap-1.5 shadow-md">
+                                <span id="cutscene-next-label">Lanjut</span>
+                                <i class="fa-solid fa-forward-step text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Area 5 Ruangan Interaktif -->
+        <div id="fp-3d-stage" class="relative flex-1 hidden flex-col items-center justify-center bg-slate-950 overflow-hidden p-5 sm:p-8">
+            <div id="room-interactive-container" class="relative h-full max-h-[calc(100vh-7.5rem)] w-auto max-w-full aspect-[16/9] rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl bg-slate-900">
+                <img
+                  id="room-scene-image"
+                  alt="Interior Ruangan Interaktif"
+                  class="w-full h-full object-cover select-none"
+                >
+
+                <div id="room-scene-placeholder" class="hidden absolute inset-0 flex-col items-center justify-center p-6 text-center bg-slate-900/95 z-10">
+                    <div class="max-w-md space-y-2">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center justify-center mx-auto text-xl">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                        <h3 id="room-placeholder-title" class="text-base font-bold text-white">Gambar Ruangan Tidak Ditemukan</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Pastikan file gambar ruangan tersedia di <code id="room-placeholder-filename" class="text-amber-300">/images/room.jpg</code>
+                        </p>
+                    </div>
+                </div>
+
+                <div id="room-hotspots-layer" class="absolute inset-0 z-20"></div>
+
+                <button type="button" onclick="exitFirstPersonRoom()" class="absolute top-3 right-3 z-30 px-3.5 py-2 rounded-xl bg-slate-950/85 hover:bg-amber-500 text-amber-300 hover:text-slate-950 border border-amber-400/50 backdrop-blur-md text-xs font-bold shadow-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5">
+                    <i class="fa-solid fa-door-open"></i>
+                    <span>Keluar Bangunan</span>
+                </button>
+
+                <div id="rpg-dialog-box" class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 px-4 py-2 rounded-full bg-slate-950/85 border border-slate-700/80 backdrop-blur-md shadow-xl flex items-center gap-2.5 max-w-[92%]">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0"></span>
+                    <span id="fp-room-sub" class="text-[11px] sm:text-xs text-slate-200 truncate">Arahkan kursor &amp; klik objek yang menyala di dalam ruangan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Isi Detail Bangunan -->
+    <div id="rpg-interior-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
+        <div class="max-w-xl w-full rounded-2xl bg-slate-900 border border-slate-700 overflow-hidden shadow-2xl text-slate-100">
+            <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <span id="interior-modal-tag" class="ml-2 font-mono-code text-[11px] text-slate-400">archive.md</span>
+                </div>
+                <button onclick="closeInteriorArchiveModal()" class="text-slate-400 hover:text-rose-400 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="interior-modal-body" class="p-6 max-h-[75vh] overflow-y-auto space-y-4 text-xs sm:text-sm leading-relaxed"></div>
+        </div>
+    </div>
+    <!-- Vite Module Entry Point -->
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
